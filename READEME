@@ -1,0 +1,39 @@
+This folder contains the C++ examples for Chapter 4
+
+chap04_6E_example1.c: Orthogonal viewing of cube using lookat function to position viewer. At point is always at the origin (the center of the cube). Eye position and ortho parameters can be changed via the keyboard. Modelview and projection matrices are sent to vertex shader.
+
+chap04_6E_example2.c: similar to example 1 using the frustum function to get a perspective view.
+
+chap04_6E_example3.c: similar to example 2 using perspective function
+
+
+Examples 4, 5, 6 and 7 explore some ways to display the same date mesh.
+The data are in the file homonlulu.raw which consists of all integers. The first two values are the numnber of rows (465) and columns (436) followed by all the ddata values which are heights about sea level for an area around Honolulu, Hawaii. Sea level has a value 0.
+
+The data are read and scaled into an array 
+
+point4 triangle_strips[464][2*435];
+
+
+All the programs start by forming triangle strips from the data.
+
+The mesh is drawn twice, first with all the triangles filled with white and the a second time by the edges which are colored black. 
+
+chap04_6E_example4.c: In this version a single long triangle mesh is created. Extra lines are introduced when the we reach the end of one row and the next trianlge is back at the beginning of the next row.
+
+Each quadrilateral in the mesh forms two triangles in the mesh. The data are scaled to that the x and z values are over (0, 1) and the
+y values (the height data) are scaled to (-1, 0).
+
+There is some keyboard control 1 and 2 toggle the idle function that allows the user spin about an axis selected with the mouse. 
+The x, X, y, Y, z, Z keys alter the orthographic projection matrix.
+
+chap04_6E_example5.c: Uses perspective view. z and Z keys control near distance, r, R, o, O, p, P control the eye point.
+In this example the triangle strip winds back and forth so as not to create extra lines at the end of each row. Data are scaled to so heights are over (0, 0.3) and x and z are scaled over (0.0, 4.0). 
+
+chap04_6E_example6.c: In this version, we draw only lines. Hence no hidden surface removal. Line colors are changed at end of each row to hide extra lines. Orhtographic view and idle controlled by keyboard as in example 4.
+
+chap04_6E_example7.c: Does two renderings: filled and unfilled. Data scaled as in example 5 so it looks better. Orhtographic viewing controlled by keyboard. Draws triangles instead of strips.
+
+chap04_6E_example8.c: projective shadow example. Projects a red square as two triangles. Alters model-view matrix as in text and reprojects square in black. Idle function rotates light source position.
+
+
